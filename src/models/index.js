@@ -10,17 +10,17 @@ const UserBoard = require('./userBoard.model');
 
 const TypeConstants = require('../constants/TypeConstants');
 
-User.belongsToMany(Board, { through: 'UserBoard', foreignKey: 'userId' });
-Board.belongsToMany(User, { through: 'UserBoard', foreignKey: 'boardId' });
+User.belongsToMany(Board, { through: 'UserBoard', foreignKey: 'userId', onDelete: 'cascade' });
+Board.belongsToMany(User, { through: 'UserBoard', foreignKey: 'boardId', onDelete: 'cascade' });
 
 
-Board.hasMany(Row, { foreignKey: 'boardId' });
+Board.hasMany(Row, { foreignKey: 'boardId', onDelete: 'cascade' });
 Row.belongsTo(Board, { foreignKey: 'boardId' });
 
-Board.hasMany(Colum, { foreignKey: 'boardId' });
+Board.hasMany(Colum, { foreignKey: 'boardId', onDelete: 'cascade' });
 Colum.belongsTo(Board, { foreignKey: 'boardId' });
 
-Board.hasMany(FieldItem, { foreignKey: 'boardId' });
+Board.hasMany(FieldItem, { foreignKey: 'boardId', onDelete: 'cascade' });
 
 FieldItem.belongsTo(Board, { foreignKey: 'boardId' });
 FieldItem.belongsTo(Row, { foreignKey: 'rowId' });

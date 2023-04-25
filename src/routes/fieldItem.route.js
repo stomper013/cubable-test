@@ -16,4 +16,14 @@ FieldRoute.patch('/:id', async (req, res, next) => {
     }
 })
 
+FieldRoute.delete('/:id', async (req, res, next) => {
+    try {
+        const id = req.params.id
+        const data = await FieldItem.destroy({where: {id}})
+        resSuccess(res, data)
+    } catch (err) {
+        resError(res, err.message)
+    }
+})
+
 module.exports = FieldRoute

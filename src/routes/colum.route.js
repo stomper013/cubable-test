@@ -20,4 +20,16 @@ ColumRoute.post('/', async (req, res, next) => {
     }
 })
 
+ColumRoute.delete('/:id', async (req, res, next) => {
+    try {
+        const id = req.params.id
+        const data = await Colum.destroy({
+            where: {id},
+        })
+        resSuccess(res, data)
+    } catch (err) {
+        resError(res, err.message)
+    }
+})
+
 module.exports = ColumRoute 

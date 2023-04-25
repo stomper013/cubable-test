@@ -59,7 +59,7 @@ BoardRoute.get('/:boardId', async (req, res, next) => {
                 attributes: { exclude: fieldsExclude },
                 include: [
                     { model: User },
-                    { model: FieldItem }
+                    { model: FieldItem, include: [{model: Row}, {model: Colum}] }
                 ]
             })
         resSuccess(res, data)
